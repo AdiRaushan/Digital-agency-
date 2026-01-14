@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      WebResolv - Turn Your Idea Into a Revenue-Ready MVP in 28 Days
+    </title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              secondary: "#6e2af5",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 3D Background -->
+    <div id="canvas-container"></div>
+
+    <!-- Header -->
+    <header class="site-header transition-all duration-300" id="header">
+      <nav class="nav-shell">
+        <a href="#top" class="inline-flex items-center" aria-label="WebResolv home">
+          <img src="WebResolv.png" alt="WebResolv Logo" class="h-[3.5rem] w-auto" />
+        </a>
+        
+          
+
+        <div class="nav-links hidden lg:flex">
+          <a href="#services" class="nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M4 5h7v7H4z" stroke-linejoin="round" />
+              <path d="M13 5h7v4h-7z" stroke-linejoin="round" />
+              <path d="M13 11h7v8h-7z" stroke-linejoin="round" />
+              <path d="M4 14h7v5H4z" stroke-linejoin="round" />
+            </svg>
+            Services
+          </a>
+          <a href="#process" class="nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                d="M4 7h6l2 3h8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4 17h6l2-3h8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Process
+          </a>
+          <a href="#pricing" class="nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M5 3h14l-2 18H7L5 3z" stroke-linejoin="round" />
+              <path d="M9 8h6" stroke-linecap="round" />
+              <path d="M9 12h6" stroke-linecap="round" />
+            </svg>
+            Pricing
+          </a>
+          <a href="#testimonials" class="nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M7 11h6" stroke-linecap="round" />
+              <path d="M7 7h10" stroke-linecap="round" />
+              <path
+                d="M5 21v-5h14v5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle cx="12" cy="13" r="8" stroke-linejoin="round" />
+            </svg>
+            Testimonials
+          </a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="#contact" class="btn-primary text-sm hidden md:inline-flex">
+            <span>Get Started</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="w-4 h-4"
+            >
+              <path d="M5 12h14" stroke-linecap="round" />
+              <path
+                d="m13 6 6 6-6 6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <button
+            class="nav-toggle lg:hidden"
+            id="navToggle"
+            aria-expanded="false"
+            aria-controls="mobileNav"
+            aria-label="Toggle navigation"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path d="M4 6h16" stroke-linecap="round" />
+              <path d="M7 12h13" stroke-linecap="round" />
+              <path d="M10 18h10" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-links">
+        <a href="#services">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path d="M4 5h7v7H4z" stroke-linejoin="round" />
+            <path d="M13 5h7v4h-7z" stroke-linejoin="round" />
+            <path d="M13 11h7v8h-7z" stroke-linejoin="round" />
+            <path d="M4 14h7v5H4z" stroke-linejoin="round" />
+          </svg>
+          Services
+        </a>
+        <a href="#process">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              d="M4 7h6l2 3h8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M4 17h6l2-3h8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Process
+        </a>
+        <a href="#pricing">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path d="M5 3h14l-2 18H7L5 3z" stroke-linejoin="round" />
+            <path d="M9 8h6" stroke-linecap="round" />
+            <path d="M9 12h6" stroke-linecap="round" />
+          </svg>
+          Pricing
+        </a>
+        <a href="#testimonials">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path d="M7 11h6" stroke-linecap="round" />
+            <path d="M7 7h10" stroke-linecap="round" />
+            <path
+              d="M5 21v-5h14v5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="12" cy="13" r="8" stroke-linejoin="round" />
+          </svg>
+          Testimonials
+        </a>
+      </div>
+
+      <div class="mobile-nav-footer">
+        <a href="#contact" class="btn-primary w-full justify-center">
+          <span>Start a Project</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path d="M5 12h14" stroke-linecap="round" />
+            <path
+              d="m13 6 6 6-6 6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <div class="text-sm text-slate-300/80">
+          <div>📧 hello@webresolv.com</div>
+          <div>📱 +91 XXX XXX XXXX</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      class="hero relative min-h-screen flex items-center dot-pattern pt-20"
+    >
+      <div class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20"
+            >
+              <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span
+                class="text-xs font-semibold text-primary uppercase tracking-wide"
+                >Now Accepting New Clients</span
+              >
+            </div>
+
+            <h1
+              class="text-5xl lg:text-6xl font-black text-gray-900 leading-tight"
+            >
+              Turn Your Idea Into a<br />
+              <span class="gradient-text">Revenue-Ready MVP</span><br />
+              in 28 Days
+            </h1>
+
+            <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+              We build high-performance, SEO-optimized websites that convert
+              visitors into customers. From startups to enterprises, we deliver
+              digital solutions that drive real results.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+              <a href="#contact" class="btn-primary text-base shadow-lg">
+                <span>Start Your Project</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path d="M5 12h14" stroke-linecap="round" />
+                  <path
+                    d="m13 6 6 6-6 6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a href="#pricing" class="btn-secondary text-base">
+                View Pricing
+              </a>
+            </div>
+
+            <div class="flex items-center gap-8 pt-4">
+              <div>
+                <div class="text-3xl font-black text-gray-900">50+</div>
+                <div class="text-sm text-gray-600">Projects Delivered</div>
+              </div>
+              <div class="w-px h-12 bg-gray-200"></div>
+              <div>
+                <div class="text-3xl font-black text-gray-900">100%</div>
+                <div class="text-sm text-gray-600">Client Satisfaction</div>
+              </div>
+              <div class="w-px h-12 bg-gray-200"></div>
+              <div>
+                <div class="text-3xl font-black text-gray-900">24/7</div>
+                <div class="text-sm text-gray-600">Support</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative floating">
+            <div class="relative w-full aspect-square max-w-lg mx-auto">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl transform rotate-6"
+              ></div>
+              <div
+                class="absolute inset-0 glassmorphism rounded-3xl p-8 shadow-2xl transform -rotate-3"
+              >
+                <div class="space-y-4">
+                  <div
+                    class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm"
+                  >
+                    <span class="text-sm font-medium text-gray-600"
+                      >Speed Score</span
+                    >
+                    <span class="text-2xl font-black gradient-text">95+</span>
+                  </div>
+                  <div
+                    class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm"
+                  >
+                    <span class="text-sm font-medium text-gray-600"
+                      >SEO Optimized</span
+                    >
+                    <span class="text-2xl font-black gradient-text">100%</span>
+                  </div>
+                  <div
+                    class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm"
+                  >
+                    <span class="text-sm font-medium text-gray-600"
+                      >Uptime</span
+                    >
+                    <span class="text-2xl font-black gradient-text">99.9%</span>
+                  </div>
+                  <div
+                    class="p-6 bg-gradient-to-br from-primary to-secondary rounded-xl text-white"
+                  >
+                    <div
+                      class="text-xs font-semibold uppercase tracking-wide mb-2"
+                    >
+                      Development Time
+                    </div>
+                    <div class="text-4xl font-black">28 Days</div>
+                    <div class="text-sm mt-2 opacity-90">
+                      From concept to launch
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted By Section -->
+
+
+
+    <!-- Built By Section -->
+    <section class="py-24 bg-gray-10 dot-pattern">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-black text-gray-900 mb-4">
+            Built For Founders
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            World-class expertise meets startup agility
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center p-8 hover-lift rounded-2xl card-surface">
+            <div class="feature-icon mx-auto mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M13 3l8 8-4.5 1.5L15 17l-3 3-1.5-4.5L5 11l8-8z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Optimized for speed with 95+ PageSpeed scores. Your users won't
+              wait, and neither will Google.
+            </p>
+          </div>
+
+          <div class="text-center p-8 hover-lift rounded-2xl card-surface">
+            <div class="feature-icon mx-auto mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="8" />
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 8v4l2.5 2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">SEO Optimized</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Built with SEO best practices from day one. Rank higher, get found
+              easier, convert better.
+            </p>
+          </div>
+
+          <div class="text-center p-8 hover-lift rounded-2xl card-surface">
+            <div class="feature-icon mx-auto mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M3.5 9l8.5 12 8.5-12-3.5-6h-10L3.5 9z"
+                  stroke-linejoin="round"
+                />
+                <path d="M3.5 9h17" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Premium Design</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Stunning, conversion-focused designs that make lasting impressions
+              and drive action.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section
+    class="py-28 bg-gradient-to-br from-gray-50 via-white to-gray-50 dot-pattern"
+    id="services"
+  >
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid lg:grid-cols-2 gap-20 items-start">
+        <!-- Left Column -->
+        <div class="space-y-12 services-intro">
+          <!-- Heading -->
+          <div class="space-y-6">
+            <span class="section-badge">What We Build</span>
+            <h2
+              class="text-5xl lg:text-6xl font-black text-gray-900 leading-tight tracking-tight"
+            >
+              Launch-Ready Digital Products with Measurable Impact
+            </h2>
+            <p class="text-xl text-gray-600 leading-relaxed">
+              Strategy, design, and engineering operating as one product squad. We
+              partner with growth teams to ship conversion-optimized web apps,
+              marketing sites, and dashboards that scale from day one.
+            </p>
+          </div>
+  
+          <!-- Ticker -->
+          <div class="project-ticker mt-8 mb-6">
+            <div class="ticker-track">
+              <span class="ticker-item">SaaS Dashboards</span>
+              <span class="ticker-item">Growth Experiments</span>
+              <span class="ticker-item">Marketing Websites</span>
+              <span class="ticker-item">Customer Portals</span>
+              <span class="ticker-item">Product Launches</span>
+              <span class="ticker-item">Brand Refreshes</span>
+              <span class="ticker-item">SaaS Dashboards</span>
+              <span class="ticker-item">Growth Experiments</span>
+              <span class="ticker-item">Marketing Websites</span>
+              <span class="ticker-item">Customer Portals</span>
+              <span class="ticker-item">Product Launches</span>
+              <span class="ticker-item">Brand Refreshes</span>
+            </div>
+          </div>
+  
+          <!-- Feature Cards -->
+          <div class="grid gap-5">
+            <div class="p-8 rounded-3xl hover-lift bg-white shadow-lg hover:shadow-2xl border border-gray-100 transition-all">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-2xl shadow-lg">
+                  ⚡
+                </div>
+                <div class="space-y-2 flex-1">
+                  <div class="text-xs font-bold text-indigo-600 uppercase tracking-wider">
+                    Conversion Engineered
+                  </div>
+                  <p class="text-gray-900 font-bold text-xl">UX rooted in analytics & CRO</p>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    A/B testing plans, heatmap reviews, and data-backed design choices baked into every engagement.
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="p-8 rounded-3xl hover-lift bg-white shadow-lg hover:shadow-2xl border border-gray-100 transition-all">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-black text-2xl shadow-lg">
+                  🚀
+                </div>
+                <div class="space-y-2 flex-1">
+                  <div class="text-xs font-bold text-purple-600 uppercase tracking-wider">
+                    Ship Faster
+                  </div>
+                  <p class="text-gray-900 font-bold text-xl">28-day launch playbooks</p>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    Clear sprints, async updates, and rigorous QA so you launch without surprises.
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="p-8 rounded-3xl hover-lift bg-white shadow-lg hover:shadow-2xl border border-gray-100 transition-all">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white font-black text-2xl shadow-lg">
+                  🎯
+                </div>
+                <div class="space-y-2 flex-1">
+                  <div class="text-xs font-bold text-blue-600 uppercase tracking-wider">
+                    Full Stack Delivery
+                  </div>
+                  <p class="text-gray-900 font-bold text-xl">Design, build, and optimize</p>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    Product strategists, designers, and engineers aligned to your KPIs from kick-off to launch.
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="p-8 rounded-3xl hover-lift bg-white shadow-lg hover:shadow-2xl border border-gray-100 transition-all">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-black text-2xl shadow-lg">
+                  📈
+                </div>
+                <div class="space-y-2 flex-1">
+                  <div class="text-xs font-bold text-emerald-600 uppercase tracking-wider">
+                    Long-Term Support
+                  </div>
+                  <p class="text-gray-900 font-bold text-xl">Iteration & growth retainers</p>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    Roadmaps, feature drops, and performance audits keep momentum long after launch.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-6 pt-6 text-sm">
+            <div class="flex items-center gap-3 px-4 py-2 bg-white rounded-full shadow-md border border-gray-100">
+              <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+              <span class="font-semibold text-gray-700">50+ funded startups scaled</span>
+            </div>
+            <div class="flex items-center gap-3 px-4 py-2 bg-white rounded-full shadow-md border border-gray-100">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span class="font-semibold text-gray-700">Avg. 38% lift in conversions</span>
+            </div>
+            <div class="flex items-center gap-3 px-4 py-2 bg-white rounded-full shadow-md border border-gray-100">
+              <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+              <span class="font-semibold text-gray-700">Dedicated post-launch analytics</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Right Column (Showcase) -->
+        <div class="project-showcase space-y-8 lg:sticky lg:top-8">
+          <div class="project-showcase-header space-y-2">
+            <span class="project-label inline-block px-4 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold uppercase tracking-wider rounded-full">Featured Websites</span>
+            <p class="project-summary text-gray-600 text-lg font-medium">
+              Live builds powering the teams we partner with
+            </p>
+          </div>
+  
+          <div
+            class="project-preview rounded-3xl overflow-hidden shadow-2xl relative group"
+            id="projectPreview"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80');
+              background-size: cover;
+              background-position: center;
+              min-height: 400px;
+            "
+          >
+            <div class="preview-content backdrop-brightness-90 p-10 h-full flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+              <span class="preview-metric inline-block px-4 py-2 bg-emerald-500 text-white font-bold rounded-full text-sm mb-4 w-fit" id="projectMetric">
+                +142% MQLs in 60 days
+              </span>
+              <h3 class="text-4xl font-black text-white mb-3" id="projectName">
+                FinEdge Analytics
+              </h3>
+              <p
+                class="text-base text-white/95 max-w-md leading-relaxed"
+                id="projectTagline"
+              >
+                Rebuilt the entire marketing site and self-service onboarding for
+                a Series B SaaS, unlocking a sharper narrative and faster trial
+                activation.
+              </p>
+            </div>
+          </div>
+  
+          <div class="project-list space-y-3">
+            <button
+              type="button"
+              class="project-chip active w-full p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200 hover:border-indigo-400 transition-all text-left hover-lift"
+              data-image="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=80"
+              data-name="FinEdge Analytics"
+              data-tagline="Rebuilt the entire marketing site and self-service onboarding for a Series B SaaS, unlocking a sharper narrative and faster trial activation."
+              data-metric="+142% MQLs in 60 days"
+              aria-pressed="true"
+            >
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <div class="project-category text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">B2B SaaS Platform</div>
+                  <div class="project-name text-lg font-black text-gray-900">FinEdge Analytics</div>
+                </div>
+                <div class="project-meta text-right">
+                  <div class="font-black text-2xl text-emerald-500">+142%</div>
+                  <div class="text-xs text-gray-600 font-medium">Marketing Qualified Leads</div>
+                </div>
+              </div>
+            </button>
+  
+            <button
+              type="button"
+              class="project-chip w-full p-6 rounded-2xl bg-white border-2 border-gray-100 hover:border-purple-300 hover:bg-purple-50/30 transition-all text-left hover-lift"
+              data-image="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1400&q=80"
+              data-name="Nova Commerce"
+              data-tagline="Designed and engineered a headless commerce experience with personalized bundles and instant checkout for a DTC brand."
+              data-metric="3.4x checkout conversion"
+              aria-pressed="false"
+            >
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <div class="project-category text-xs font-bold text-purple-600 uppercase tracking-wider mb-1">Headless eCommerce</div>
+                  <div class="project-name text-lg font-black text-gray-900">Nova Commerce</div>
+                </div>
+                <div class="project-meta text-right">
+                  <div class="font-black text-2xl text-emerald-500">+3.4x</div>
+                  <div class="text-xs text-gray-600 font-medium">Checkout Conversion</div>
+                </div>
+              </div>
+            </button>
+  
+            <button
+              type="button"
+              class="project-chip w-full p-6 rounded-2xl bg-white border-2 border-gray-100 hover:border-blue-300 hover:bg-blue-50/30 transition-all text-left hover-lift"
+              data-image="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1400&q=80"
+              data-name="PulseCare Platform"
+              data-tagline="Launched a HIPAA-ready patient engagement portal with realtime care plans and secure messaging for a national clinic network."
+              data-metric="48% fewer support tickets"
+              aria-pressed="false"
+            >
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <div class="project-category text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">Healthcare Portal</div>
+                  <div class="project-name text-lg font-black text-gray-900">PulseCare Platform</div>
+                </div>
+                <div class="project-meta text-right">
+                  <div class="font-black text-2xl text-emerald-500">-48%</div>
+                  <div class="text-xs text-gray-600 font-medium">Support Tickets</div>
+                </div>
+              </div>
+            </button>
+  
+            <button
+              type="button"
+              class="project-chip w-full p-6 rounded-2xl bg-white border-2 border-gray-100 hover:border-teal-300 hover:bg-teal-50/30 transition-all text-left hover-lift"
+              data-image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
+              data-name="Orbit Learning"
+              data-tagline="Built a modular learning platform with cohort analytics and Stripe billing that helped an EdTech startup close their seed round."
+              data-metric="68% boost in course completion"
+              aria-pressed="false"
+            >
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <div class="project-category text-xs font-bold text-teal-600 uppercase tracking-wider mb-1">EdTech SaaS</div>
+                  <div class="project-name text-lg font-black text-gray-900">Orbit Learning</div>
+                </div>
+                <div class="project-meta text-right">
+                  <div class="font-black text-2xl text-emerald-500">+68%</div>
+                  <div class="text-xs text-gray-600 font-medium">Course Completion</div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- new section  -->
+<!-- SECTION 1: End-to-End Brand Solutions -->
+<section class="py-28 bg-gray-10 dot-pattern">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="text-center mb-20">
+      <span class="section-badge mb-4 inline-block">Complete Brand Suite</span>
+      <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
+        We Handle Everything<br />
+        <span class="gradient-text">End-to-End</span>
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        From your first logo sketch to viral social media reels, we're your complete digital partner. 
+        One team, one vision, zero hassle.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+      <!-- Left: Services Grid -->
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="service-card bg-white rounded-2xl p-8 hover-lift shadow-sm border border-gray-100">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M3 12h2m14 0h2M12 3v2m0 14v2"/>
+              <path d="m6.34 6.34 1.42 1.42m8.48 8.48 1.42 1.42M6.34 17.66l1.42-1.42m8.48-8.48 1.42-1.42"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Logo & Brand Identity</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Custom logos, color palettes, typography, and complete brand guidelines that make you memorable.
+          </p>
+        </div>
+
+        <div class="service-card bg-white rounded-2xl p-8 hover-lift shadow-sm border border-gray-100">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="m9 11 2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Graphic Design</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Social media posts, banners, infographics, presentations—everything your brand needs to shine.
+          </p>
+        </div>
+
+        <div class="service-card bg-white rounded-2xl p-8 hover-lift shadow-sm border border-gray-100">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18"/>
+              <path d="m7 2 0 20"/>
+              <path d="m17 2 0 20"/>
+              <path d="m2 12 20 0"/>
+              <path d="m2 7 5 0"/>
+              <path d="m2 17 5 0"/>
+              <path d="m17 17 5 0"/>
+              <path d="m17 7 5 0"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Video Editing</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Reels, stories, ads, and explainer videos optimized for Instagram, YouTube, and TikTok engagement.
+          </p>
+        </div>
+
+        <div class="service-card bg-white rounded-2xl p-8 hover-lift shadow-sm border border-gray-100">
+          <div class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+              <path d="M11 8v6"/>
+              <path d="M8 11h6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">SEO & Analytics</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Keyword research, on-page optimization, link building, and performance tracking to rank #1.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Feature Highlight -->
+      <div class="relative">
+        <div class="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-12 text-white floating shadow-2xl">
+          <div class="absolute top-6 right-6 w-16 h-16 bg-secondary/20 rounded-full blur-2xl"></div>
+          <div class="absolute bottom-6 left-6 w-20 h-20 bg-primary/20 rounded-full blur-2xl"></div>
+          
+          <div class="relative space-y-8">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">🎨</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg mb-2">Design Consistency</h4>
+                <p class="text-sm text-white/80 leading-relaxed">
+                  Every asset follows your brand guidelines—from website to Instagram carousel.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">⚡</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg mb-2">Fast Turnaround</h4>
+                <p class="text-sm text-white/80 leading-relaxed">
+                  Logos in 3 days, reels in 24 hours, SEO reports weekly. We move at your speed.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">🚀</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg mb-2">Unlimited Revisions</h4>
+                <p class="text-sm text-white/80 leading-relaxed">
+                  We iterate until it's perfect. Your satisfaction is our success metric.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Stats Bar -->
+    <div class="grid md:grid-cols-4 gap-8 bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+      <div class="text-center">
+        <div class="text-4xl font-black gradient-text mb-2">500+</div>
+        <div class="text-sm text-gray-600">Logos Designed</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-black gradient-text mb-2">1,200+</div>
+        <div class="text-sm text-gray-600">Graphics Created</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-black gradient-text mb-2">800+</div>
+        <div class="text-sm text-gray-600">Videos Edited</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-black gradient-text mb-2">95%</div>
+        <div class="text-sm text-gray-600">Avg. SEO Score</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Google & Social Media Setup -->
+<section class="py-28 bg-gray-900 text-white relative overflow-hidden">
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-7xl mx-auto px-8 relative z-10">
+    <div class="text-center mb-20">
+      <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full border border-white/20 mb-4">
+        <div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+        <span class="text-xs font-semibold uppercase tracking-wide">Digital Foundation</span>
+      </span>
+      <h2 class="text-4xl lg:text-5xl font-black mb-6 leading-tight">
+        We Set Up Your Entire<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-secondary">Digital Ecosystem</span>
+      </h2>
+      <p class="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
+        Google Business Profile, Analytics, Search Console, social media accounts, and more. 
+        We build the infrastructure that powers your online presence.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 mb-16">
+      <!-- Google Services -->
+      <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover-lift">
+        <div class="w-16 h-16 bg-gradient-to-br from-red-500/20 to-yellow-500/20 rounded-2xl flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Google Ecosystem</h3>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Google Business Profile optimization</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Analytics & Tag Manager setup</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Search Console integration</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Google Ads account structure</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover-lift">
+        <div class="w-16 h-16 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"/>
+            <rect x="4" y="4" width="16" height="16" rx="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Social Media Setup</h3>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Instagram, Facebook, LinkedIn profiles</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Bio optimization & link-in-bio pages</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Content calendar templates</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Meta Business Suite configuration</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Technical Setup -->
+      <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover-lift">
+        <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Technical Foundation</h3>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Domain & email configuration</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>SSL certificates & security</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>CDN & performance optimization</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>Backup & monitoring systems</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Call-out Box -->
+    <div class="bg-gradient-to-r from-secondary/20 to-primary/20 backdrop-blur-sm rounded-2xl p-10 border border-white/10 text-center">
+      <h4 class="text-2xl font-bold mb-4">🎯 Launch-Ready in One Week</h4>
+      <p class="text-white/80 max-w-3xl mx-auto mb-6 leading-relaxed">
+        We handle every technical detail—domain registration, hosting setup, email configuration, 
+        analytics integration, and social media optimization. You focus on your business, we build the foundation.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <span class="px-4 py-2 bg-white/10 rounded-full border border-white/20">No Technical Knowledge Required</span>
+        <span class="px-4 py-2 bg-white/10 rounded-full border border-white/20">Complete Documentation Provided</span>
+        <span class="px-4 py-2 bg-white/10 rounded-full border border-white/20">Training Included</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: Custom Projects & Flexibility -->
+<section class="py-28 bg-white dot-pattern">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left Column -->
+      <div class="space-y-8">
+        <div>
+          <span class="section-badge mb-4 inline-block">Flexible Solutions</span>
+          <h2 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">
+            Got a Unique Idea?<br />
+            <span class="gradient-text">We Build Custom</span>
+          </h2>
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Your business isn't cookie-cutter, so why should your digital solution be? 
+            We specialize in custom projects that push boundaries and solve real problems.
+          </p>
+        </div>
+
+        <!-- Custom Project Types -->
+        <div class="space-y-4">
+          <div class="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100 hover-lift">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M9 3v18"/>
+                <path d="M3 9h6"/>
+                <path d="M3 15h6"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-2">SaaS Platforms</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Multi-tenant dashboards, user authentication, subscription billing, analytics, and API integrations.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100 hover-lift">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-2">Marketplace Apps</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Two-sided platforms connecting buyers and sellers with payments, reviews, messaging, and admin panels.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100 hover-lift">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-2">Booking Systems</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Calendar integrations, appointment scheduling, automated reminders, payment processing, and CRM tools.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100 hover-lift">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <path d="M14 2v6h6"/>
+                <path d="M12 18v-6"/>
+                <path d="M9 15h6"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-2">Internal Tools</h4>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Custom CRMs, inventory management, reporting dashboards, and workflow automation for your team.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#contact" class="btn-primary text-sm">
+            <span>Discuss Your Project</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4">
+              <path d="M5 12h14" stroke-linecap="round"/>
+              <path d="m13 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#pricing" class="btn-secondary text-sm">View Packages</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Process Visual -->
+      <div class="relative">
+        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-12 shadow-2xl">
+          <h3 class="text-2xl font-bold text-white mb-8">Our Custom Project Process</h3>
+          
+          <div class="space-y-6">
+            <!-- Step 1 -->
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center text-white font-black text-xl flex-shrink-0 shadow-lg">
+                1
+              </div>
+              <div class="pt-2">
+                <h4 class="text-white font-bold text-lg mb-2">Discovery Call</h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  We deep-dive into your vision, technical requirements, target audience, and success metrics.
+                </p>
+                <span class="text-xs text-secondary font-semibold mt-2 inline-block">1-2 days</span>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="ml-7 w-0.5 h-8 bg-gradient-to-b from-white/20 to-transparent"></div>
+
+            <!-- Step 2 -->
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center text-white font-black text-xl flex-shrink-0 shadow-lg">
+                2
+              </div>
+              <div class="pt-2">
+                <h4 class="text-white font-bold text-lg mb-2">Custom Proposal</h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  Detailed scope, tech stack recommendation, timeline, and transparent pricing breakdown.
+                </p>
+                <span class="text-xs text-secondary font-semibold mt-2 inline-block">2-3 days</span>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="ml-7 w-0.5 h-8 bg-gradient-to-b from-white/20 to-transparent"></div>
+
+            <!-- Step 3 -->
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center text-white font-black text-xl flex-shrink-0 shadow-lg">
+                3
+              </div>
+              <div class="pt-2">
+                <h4 class="text-white font-bold text-lg mb-2">Agile Development</h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  Weekly sprints with demos, feedback loops, and transparent progress tracking via Slack/Notion.
+                </p>
+                <span class="text-xs text-secondary font-semibold mt-2 inline-block">4-12 weeks</span>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="ml-7 w-0.5 h-8 bg-gradient-to-b from-white/20 to-transparent"></div>
+
+            <!-- Step 4 -->
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center text-white font-black text-xl flex-shrink-0 shadow-lg">
+                4
+              </div>
+              <div class="pt-2">
+                <h4 class="text-white font-bold text-lg mb-2">Launch & Scale</h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  Deployment, monitoring setup, team training, and ongoing optimization support.
+                </p>
+                <span class="text-xs text-secondary font-semibold mt-2 inline-block">Ongoing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Badge -->
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                  <span class="text-xl">💬</span>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-sm">Real-time collaboration</div>
+                  <div class="text-white/60 text-xs">Slack, Figma, GitHub access</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-white font-black text-2xl">$5K+</div>
+                <div class="text-white/60 text-xs">Starting from</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Badge -->
+        <div class="absolute -top-6 -right-6 bg-secondary text-white px-6 py-3 rounded-2xl shadow-xl floating">
+          <div class="text-xs font-semibold uppercase tracking-wide">Fixed-Price Options</div>
+          <div class="text-2xl font-black">Available</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technologies We Work With -->
+    <div class="mt-24">
+      <h3 class="text-2xl font-bold text-gray-900 text-center mb-12">
+        Technologies We Master
+      </h3>
+      <div class="flex flex-wrap justify-center items-center gap-8">
+        <div class="flex items-center gap-3 px-6 py-4 bg-gray-50 rounded-xl border border-gray-200 hover-lift">
+          <span class="text-2xl">⚛️</span>
+          <span class="font-semibold text-gray-900">React & Next.js</span>
+        </div>
+        <div class="flex items-center gap-3 px-6 py-4 bg-gray-50 rounded-xl border border-gray-200 hover-lift">
+          <span class="text-2xl">🟢</span>
+          <span class="font-semibold text-gray-900">Node.js & Express</span>
+        </div>
+        <div class="flex items-center gap-3 px-6 py-4 bg-gray-50 rounded-xl border border-gray-200 hover-lift">
+          <span class="text-2xl">🐍</span>
+          <span class="font-semibold text-gray-900">Python & Django</span>
+        </div>
+        <div class="flex items-center gap-3 px-6 py-4 bg-gray-50 rounded-xl border border-gray-200 hover-lift">
+          <span class="text-2xl">🔷</span>
+          <span class="font-semibold text-gray-900">PostgreSQL & MongoDB</span>
+        </div>
+        <div class="flex items-center gap-3 px-6 py-4 bg-gray-50 rounded-xl border border-gray-200 hover-lift">
+          <span class="text-2xl">☁️</span>
+          <span class="font-semibold text-gray-900">AWS & Vercel</span>
+        </div>
+        <div class="flex items-center gap-3 px-6 py-4 bg-gray-50 rounded-xl border border-gray-200 hover-lift">
+          <span class="text-2xl">🎨</span>
+          <span class="font-semibold text-gray-900">Tailwind & Figma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-20 text-center bg-gradient-to-br from-gray-50 to-white rounded-3xl p-12 border border-gray-200">
+      <h3 class="text-3xl font-black text-gray-900 mb-4">
+        Not Sure What You Need?
+      </h3>
+      <p class="text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Book a free 30-minute consultation. We'll help you map out the perfect solution, 
+        recommend the right tech stack, and provide a transparent quote—no strings attached.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#contact" class="btn-primary">
+          <span>Book Free Consultation</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-5 h-5">
+            <path d="M5 12h14" stroke-linecap="round"/>
+            <path d="m13 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="mailto:hello@webresolv.com" class="btn-secondary">
+          <span>Email Us Directly</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- new section  -->
+    <!-- Process Timeline -->
+  <section class="py-24 " id="process bg-white dot-pattern">
+        <div class="max-w-7xl mx-auto px-6">
+          <!-- Section Header -->
+          <div class="text-center mb-20">
+            <span class="section-badge mb-4 inline-block">Our Process</span>
+            <h2 class="text-4xl font-black text-gray-900 mb-3">
+              From Idea to Revenue in 5 Weeks
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Proven methodology, predictable results.
+            </p>
+          </div>
+      
+          <!-- Process Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Step 1 -->
+            <div class="relative bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+              <div
+                class="w-14 h-14 flex items-center justify-center rounded-xl number-badge text-white text-2xl font-bold mb-5"
+              >
+                1
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Discovery</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Deep dive into your goals, audience, and competitive landscape. We define clear success metrics together.
+              </p>
+              <div class="mt-5 text-xs font-semibold text-primary uppercase tracking-wide">
+                Week 1
+              </div>
+            </div>
+      
+            <!-- Step 2 -->
+            <div class="relative bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+              <div
+                class="w-14 h-14 flex items-center justify-center rounded-xl number-badge text-white text-2xl font-bold mb-5"
+              >
+                2
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Design</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Create intuitive UI mockups and clickable prototypes. Every pixel crafted for impact and conversion.
+              </p>
+              <div class="mt-5 text-xs font-semibold text-primary uppercase tracking-wide">
+                Week 2
+              </div>
+            </div>
+      
+            <!-- Step 3 -->
+            <div class="relative bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+              <div
+                class="w-14 h-14 flex items-center justify-center rounded-xl number-badge text-white text-2xl font-bold mb-5"
+              >
+                3
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Development</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Build with a modern, scalable tech stack. Clean code, responsive design, and SEO optimization included.
+              </p>
+              <div class="mt-5 text-xs font-semibold text-primary uppercase tracking-wide">
+                Week 3–4
+              </div>
+            </div>
+      
+            <!-- Step 4 -->
+            <div class="relative bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+              <div
+                class="w-14 h-14 flex items-center justify-center rounded-xl number-badge text-white text-2xl font-bold mb-5"
+              >
+                4
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Launch</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Deploy to production with analytics, QA, and long-term support. Measure, iterate, and grow confidently.
+              </p>
+              <div class="mt-5 text-xs font-semibold text-primary uppercase tracking-wide">
+                Week 5
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+    <!-- Services Grid -->
+    <section class="py-24 bg-gray-20 dot-pattern">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="section-badge mb-4">Services</span>
+          <h2 class="text-4xl font-black text-gray-900 mb-4">
+            Everything You Need to Succeed
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Comprehensive solutions for modern businesses
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-8 card-surface rounded-2xl hover-lift">
+            <div class="feature-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M4 5h6l3 5h7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13 16l3 3 5-5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle cx="6.5" cy="17.5" r="2.5" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Custom Design</h3>
+            <p class="text-sm text-gray-600">
+              Unique, conversion-focused designs tailored to your brand
+            </p>
+          </div>
+
+          <div class="p-8 card-surface rounded-2xl hover-lift">
+            <div class="feature-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Lightning Fast</h3>
+            <p class="text-sm text-gray-600">
+              Optimized for speed with 95+ PageSpeed scores
+            </p>
+          </div>
+
+          <div class="p-8 card-surface rounded-2xl hover-lift">
+            <div class="feature-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <rect x="7" y="2" width="10" height="20" rx="2" />
+                <circle
+                  cx="12"
+                  cy="18"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Mobile First</h3>
+            <p class="text-sm text-gray-600">
+              Perfect on every device, from mobile to desktop
+            </p>
+          </div>
+
+          <div class="p-8 card-surface rounded-2xl hover-lift">
+            <div class="feature-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="6" />
+                <path d="m16.5 16.5 4 4" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">SEO Optimized</h3>
+            <p class="text-sm text-gray-600">
+              Built to rank with technical SEO best practices
+            </p>
+          </div>
+
+          <div class="p-8 card-surface rounded-2xl hover-lift">
+            <div class="feature-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M3 5h2l1.68 8.39A2 2 0 0 0 8.63 15H17a2 2 0 0 0 2-1.56L20.5 7H6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle cx="9" cy="19" r="1.5" />
+                <circle cx="17" cy="19" r="1.5" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">E-Commerce</h3>
+            <p class="text-sm text-gray-600">
+              Full-featured online stores that convert visitors
+            </p>
+          </div>
+
+          <div class="p-8 card-surface rounded-2xl hover-lift">
+            <div class="feature-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M21 3a4.5 4.5 0 0 0-6.36 0l-1.2 1.2 4.36 4.36 1.2-1.2A4.5 4.5 0 0 0 21 3z"
+                />
+                <path
+                  d="M3 21l6.75-1.5a2 2 0 0 0 1.07-.56l8.29-8.29-4.36-4.36-8.29 8.29a2 2 0 0 0-.56 1.07L3 21z"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Maintenance</h3>
+            <p class="text-sm text-gray-600">
+              Ongoing support, updates, and optimization
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-24 bg-white" id="pricing">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="section-badge mb-4">Pricing</span>
+          <h2 class="text-4xl font-black text-gray-900 mb-4">
+            Transparent Pricing, No Hidden Costs
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Choose the plan that fits your needs
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Basic -->
+          <div
+            class="relative p-8 bg-white rounded-3xl border-2 border-gray-200 hover-lift"
+          >
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+              <p class="text-sm text-gray-600">Perfect for small businesses</p>
+            </div>
+            <div class="mb-8">
+              <div class="flex items-baseline">
+                <span class="text-5xl font-black text-gray-900">₹7,000</span>
+              </div>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Up to 5 pages</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Responsive design</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Basic SEO</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Contact form</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">1 month support</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn-secondary w-full justify-center">
+              Get Started
+            </a>
+          </div>
+
+          <!-- Pro (Featured) -->
+          <div
+            class="relative p-8 bg-gradient-to-br from-primary to-secondary rounded-3xl hover-lift shadow-xl shadow-primary/20 transform scale-105"
+          >
+            <div
+              class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-white rounded-full shadow-lg"
+            >
+              <span
+                class="text-xs font-bold gradient-text uppercase tracking-wide"
+                >Most Popular</span
+              >
+            </div>
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-white mb-2">Professional</h3>
+              <p class="text-sm text-white/80">For growing businesses</p>
+            </div>
+            <div class="mb-8">
+              <div class="flex items-baseline">
+                <span class="text-5xl font-black text-white">₹12,000</span>
+                <span class="text-white/80 ml-2">+</span>
+              </div>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-white flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white">Up to 10 pages</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-white flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white">Custom design & branding</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-white flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white">Advanced SEO</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-white flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white">CMS integration</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-white flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white">Unlimited revisions</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-white flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-white">3 months support</span>
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="btn-outline w-full justify-center bg-white text-primary"
+            >
+              Get Started
+            </a>
+          </div>
+
+          <!-- Enterprise -->
+          <div
+            class="relative p-8 bg-white rounded-3xl border-2 border-gray-200 hover-lift"
+          >
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">E-Commerce</h3>
+              <p class="text-sm text-gray-600">Full online store solution</p>
+            </div>
+            <div class="mb-8">
+              <div class="flex items-baseline">
+                <span class="text-5xl font-black text-gray-900">₹25,000</span>
+              </div>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Unlimited pages</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Full e-commerce</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Payment gateway</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Inventory management</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">Analytics & reporting</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm text-gray-600">6 months support</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn-secondary w-full justify-center">
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-gray-10 dot-pattern" id="testimonials">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="section-badge mb-4">Testimonials</span>
+          <h2 class="text-4xl font-black text-gray-900 mb-4">
+            Founders Who Trusted WebResolv
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Real stories from real founders who launched with us
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="bg-white rounded-2xl p-8 hover-lift border border-gray-100"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold"
+              >
+                JD
+              </div>
+              <div>
+                <div class="font-bold text-gray-900">John Doe</div>
+                <div class="text-sm text-gray-600">Founder, TechStart</div>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed italic">
+              "WebResolv transformed our vision into reality in just 4 weeks.
+              The attention to detail and performance optimization exceeded our
+              expectations."
+            </p>
+            <div class="flex gap-1 mt-4">
+              <span class="text-yellow-400">★★★★★</span>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl p-8 hover-lift border border-gray-100"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold"
+              >
+                SK
+              </div>
+              <div>
+                <div class="font-bold text-gray-900">Sarah Khan</div>
+                <div class="text-sm text-gray-600">CEO, ShopHub</div>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed italic">
+              "The e-commerce platform they built has been generating revenue
+              from day one. Fast, beautiful, and converts like crazy. Highly
+              recommend!"
+            </p>
+            <div class="flex gap-1 mt-4">
+              <span class="text-yellow-400">★★★★★</span>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl p-8 hover-lift border border-gray-100"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold"
+              >
+                RP
+              </div>
+              <div>
+                <div class="font-bold text-gray-900">Raj Patel</div>
+                <div class="text-sm text-gray-600">Co-founder, GrowthLabs</div>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed italic">
+              "Professional, responsive, and results-driven. Our PageSpeed score
+              went from 60 to 98. The SEO optimization has tripled our organic
+              traffic."
+            </p>
+            <div class="flex gap-1 mt-4">
+              <span class="text-yellow-400">★★★★★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ <!-- CTA Section -->
+ <section
+ class="relative py-24 bg-gray-10 dot-pattern overflow-hidden"
+ id="contact"
+>
+ <!-- Decorative dots -->
+ <div class="absolute inset-0 bg-[url('/assets/dot-pattern.svg')] opacity-10"></div>
+
+ <div class="relative max-w-4xl mx-auto px-6 text-center">
+   <h2 class="text-4xl md:text-5xl font-black text-black
+    mb-6 leading-tight">
+     Ready to Launch Your MVP?
+   </h2>
+   <p class="text-lg md:text-xl text-black/90 mb-12 max-w-2xl mx-auto">
+     Let's turn your idea into a revenue-generating website. Book a free consultation today.
+   </p>
+
+   <div
+     class="bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-white/20 max-w-2xl mx-auto transition-all hover:shadow-[0_12px_50px_rgba(0,0,0,0.15)]"
+   >
+     <form id="contactForm" class="space-y-6">
+       <div class="grid md:grid-cols-2 gap-6">
+         <input
+           type="text"
+           placeholder="Your Name"
+           required
+           class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none transition-all text-sm font-medium"
+         />
+         <input
+           type="email"
+           placeholder="Email Address"
+           required
+           class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none transition-all text-sm font-medium"
+         />
+       </div>
+
+       <input
+         type="tel"
+         placeholder="Phone Number"
+         class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none transition-all text-sm font-medium"
+       />
+
+       <select
+         required
+         class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none transition-all text-sm font-medium text-gray-700"
+       >
+         <option value="">Select Service</option>
+         <option value="starter">Starter (₹7,000)</option>
+         <option value="professional">Professional (₹12,000+)</option>
+         <option value="ecommerce">E-Commerce (₹25,000)</option>
+         <option value="custom">Custom Solution</option>
+       </select>
+
+       <textarea
+         placeholder="Tell us about your project..."
+         rows="4"
+         required
+         class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:outline-none transition-all text-sm font-medium resize-none"
+       ></textarea>
+
+       <button
+         type="submit"
+         class="btn-primary w-full justify-center text-sm py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+       >
+         Send Message
+       </button>
+
+       <p class="text-xs text-gray-600 text-center mt-2">
+         Or schedule a call:
+         <a
+           href="https://cal.com/webresolv"
+           target="_blank"
+           class="text-primary font-semibold hover:underline"
+           >Book Now</a
+         >
+       </p>
+     </form>
+   </div>
+ </div>
+</section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="section-badge mb-4">FAQ</span>
+          <h2 class="text-4xl font-black text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-lg text-gray-600">
+            Everything you need to know before getting started
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div
+            class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <button
+              class="faq-question w-full px-8 py-6 text-left flex items-center justify-between font-semibold text-gray-900 hover:text-primary transition-colors"
+            >
+              <span>How long does it take to build a website?</span>
+              <svg
+                class="w-6 h-6 flex-shrink-0 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              class="faq-answer px-8 pb-6 text-sm text-gray-600 leading-relaxed hidden"
+            >
+              Basic websites take 1-2 weeks, custom websites 3-4 weeks, and
+              e-commerce sites 4-6 weeks. We provide a detailed timeline during
+              consultation based on your requirements.
+            </div>
+          </div>
+
+          <div
+            class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <button
+              class="faq-question w-full px-8 py-6 text-left flex items-center justify-between font-semibold text-gray-900 hover:text-primary transition-colors"
+            >
+              <span>Will my website be mobile-friendly?</span>
+              <svg
+                class="w-6 h-6 flex-shrink-0 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              class="faq-answer px-8 pb-6 text-sm text-gray-600 leading-relaxed hidden"
+            >
+              Absolutely! Every website we build is fully responsive and
+              optimized for all devices. We follow a mobile-first approach to
+              ensure perfect experiences on smartphones, tablets, and desktops.
+            </div>
+          </div>
+
+          <div
+            class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <button
+              class="faq-question w-full px-8 py-6 text-left flex items-center justify-between font-semibold text-gray-900 hover:text-primary transition-colors"
+            >
+              <span>Do you provide hosting and domain services?</span>
+              <svg
+                class="w-6 h-6 flex-shrink-0 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              class="faq-answer px-8 pb-6 text-sm text-gray-600 leading-relaxed hidden"
+            >
+              We help you choose the best hosting solution and handle complete
+              setup. We work with premium hosting providers to ensure maximum
+              uptime, security, and performance.
+            </div>
+          </div>
+
+          <div
+            class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <button
+              class="faq-question w-full px-8 py-6 text-left flex items-center justify-between font-semibold text-gray-900 hover:text-primary transition-colors"
+            >
+              <span>Can I update content myself after launch?</span>
+              <svg
+                class="w-6 h-6 flex-shrink-0 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              class="faq-answer px-8 pb-6 text-sm text-gray-600 leading-relaxed hidden"
+            >
+              Yes! We integrate user-friendly CMS for custom and e-commerce
+              packages, allowing you to update content easily. We also provide
+              comprehensive training and documentation.
+            </div>
+          </div>
+
+          <div
+            class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+          >
+            <button
+              class="faq-question w-full px-8 py-6 text-left flex items-center justify-between font-semibold text-gray-900 hover:text-primary transition-colors"
+            >
+              <span>What's your payment structure?</span>
+              <svg
+                class="w-6 h-6 flex-shrink-0 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              class="faq-answer px-8 pb-6 text-sm text-gray-600 leading-relaxed hidden"
+            >
+              50% upfront to begin, 50% upon completion before going live. We
+              accept bank transfer, UPI, PayPal, and Razorpay. All projects
+              include detailed contracts and milestones.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-12 mb-12">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center"
+              >
+                <span class="text-white font-bold text-sm">W</span>
+              </div>
+              <span class="text-xl font-bold">WebResolv</span>
+            </div>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Transforming ideas into revenue-ready websites. Built with
+              precision, delivered with speed.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-4 text-sm">Services</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Web Development</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >E-Commerce</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >SEO Optimization</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Brand Design</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-4 text-sm">Company</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#process"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Process</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#pricing"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#testimonials"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Testimonials</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-4 text-sm">Contact</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>📧 hello@webresolv.com</li>
+              <li>📱 +91 XXX XXX XXXX</li>
+              <li>📍 Your City, India</li>
+            </ul>
+            <div class="flex gap-3 mt-4">
+              <a
+                href="#"
+                class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                >𝕏</a
+              >
+              <a
+                href="#"
+                class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                >in</a
+              >
+              <a
+                href="#"
+                class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                >📧</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400"
+        >
+          <p>
+            &copy; 2024 WebResolv. All rights reserved. Built with passion,
+            powered by code.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
